@@ -7,7 +7,7 @@ import os
 app = FastAPI()
 
 # === Load model and scaler ===
-BASE_DIR = os.path.dirname(__file__)
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # Go up one level
 model = joblib.load(os.path.join(BASE_DIR, "models", "credit_risk_model.pkl"))
 scaler = joblib.load(os.path.join(BASE_DIR, "models", "scaler.pkl"))
 

@@ -1,14 +1,10 @@
 {
   "builds": [
-    {
-      "src": "app/credit_risk_api.py",
-      "use": "@vercel/python"
-    }
+    { "src": "app/credit_risk_api.py", "use": "@vercel/python" },
+    { "src": "build/**/*", "use": "@vercel/static" }
   ],
   "routes": [
-    {
-      "src": "/api/predict",
-      "dest": "app/credit_risk_api.py"
-    }
+    { "src": "/api/predict", "dest": "app/credit_risk_api.py" },
+    { "src": "/(.*)", "dest": "/build/$1" }
   ]
 }
