@@ -10,7 +10,7 @@ app = FastAPI()
 # Allow CORS for frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://credit-risk-ml-81w1-eof8ojn6m-sanduni-disanayakas-projects.vercel.app"],  # Or specify your Vercel frontend URL
+    allow_origins=["https://credit-risk-ml.vercel.app", "https://credit-risk-65v06jjm4-sanduni-disanayakas-projects.vercel.app"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
