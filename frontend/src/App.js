@@ -15,12 +15,6 @@ function App() {
     "📻 Purpose: Radio/TV (1 = Yes)"
   ];
 
-  const handleChange = (index, value) => {
-    const updated = [...features];
-    updated[index] = Number(value);
-    setFeatures(updated);
-  };
-
  const handleSubmit = async () => {
   try {
     const res = await axios.post(
@@ -35,14 +29,9 @@ function App() {
   }
 };
 
+};
 
 
-
-
-
-}
-
-  
 
   return (
     <div style={styles.container}>
