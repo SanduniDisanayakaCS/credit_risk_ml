@@ -18,10 +18,11 @@ function App() {
  const handleSubmit = async () => {
   try {
     const res = await axios.post(
-      "https://creditriskml-production.up.railway.app/predict",
-      { features },
-      { headers: { "Content-Type": "application/json" } }
-    );
+  "https://creditriskml-production.up.railway.app/predict",
+  { features },
+  { headers: { "Content-Type": "application/json" } }
+);
+
     setPrediction(res.data.credit_risk_prediction);
   } catch (err) {
     console.error("Backend error:", err.response ? err.response.data : err.message);
