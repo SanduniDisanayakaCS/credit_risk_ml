@@ -39,11 +39,3 @@ def predict(data: InputData):
     pred = model.predict(x_scaled)
     return {"credit_risk_prediction": int(pred[0])}
 
-@app.options("/predict")
-async def options_predict(request: Request):
-    headers = {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "*",
-        "Access-Control-Allow-Headers": "*",
-    }
-    return JSONResponse(content={}, status_code=200, headers=headers)
