@@ -38,4 +38,9 @@ def predict(data: InputData):
 
 @app.options("/predict")
 async def options_predict(request: Request):
-    return JSONResponse(content={}, status_code=200)
+    headers = {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+        "Access-Control-Allow-Headers": "*",
+    }
+    return JSONResponse(content={}, status_code=200, headers=headers)
