@@ -10,17 +10,14 @@ from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
-print("🚀 FastAPI app started — CORS Middleware is active")
-
-
-# Allow CORS for frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://credit-risk-ml.vercel.app", "https://credit-risk-65v06jjm4-sanduni-disanayakas-projects.vercel.app"],  
+    allow_origins=["*"],  # use wildcard now just to confirm
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"]
 )
+
 
 # === Load model and scaler ===
 BASE_DIR = os.path.dirname(__file__)
