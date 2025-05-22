@@ -10,6 +10,9 @@ from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
+print("🚀 FastAPI app started — CORS Middleware is active")
+
+
 # Allow CORS for frontend
 app.add_middleware(
     CORSMiddleware,
