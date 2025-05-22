@@ -4,6 +4,9 @@ from pydantic import BaseModel
 import joblib
 import numpy as np
 import os
+from fastapi import Request
+from fastapi.responses import JSONResponse
+
 
 app = FastAPI()
 
@@ -32,3 +35,7 @@ def predict(data: InputData):
     x_scaled = scaler.transform(x)
     pred = model.predict(x_scaled)
     return {"credit_risk_prediction": int(pred[0])}
+
+@app.options("/predict")
+async def options_predict(request: Request):
+    return JSONResponse(content={}, status_code=200)
