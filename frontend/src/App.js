@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./App.css"; // optional: custom styles if needed
+import "./App.css"; // if you use styles
 
 function App() {
   const [features, setFeatures] = useState(Array(6).fill(0));
@@ -10,30 +10,29 @@ function App() {
     "💰 Credit amount",
     "📅 Duration (months)",
     "💼 Job (numeric code)",
-    "👤 Age",
+    "🧍 Age",
     "🚗 Purpose: Car (1 = Yes)",
-    "📻 Purpose: Radio/TV (1 = Yes)"
+    "📺 Purpose: Radio/TV (1 = Yes)"
   ];
 
- const handleSubmit = async () => {
-  try {
-    const res = await axios.post("https://creditriskml-production.up.railway.app/predict",
-  { features },
-  { headers: { "Content-Type": "application/json" } }
-);
+  const handleChange = (index, value) => {
+    const updated = [...features];
+    updated[index] = Number(value);
+    setFeatures(updated);
+  };
 
-
-
-    setPrediction(res.data.credit_risk_prediction);
-  } catch (err) {
-    console.error("Backend error:", err.response ? err.response.data : err.message);
-    alert("Prediction failed. Check backend connection.");
-  }
-};
-
-};
-
-
+  const handleSubmit = async () => {
+    try {
+      const res = await axios.post("https://creditriskml-production.up.railway.app/predict",
+        { features },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      setPrediction(res.data.credit_risk_prediction);
+    } catch (err) {
+      console.error("Backend error:", err.response ? err.response.data : err.message);
+      alert("Prediction failed. Check backend connection.");
+    }
+  };
 
   return (
     <div style={styles.container}>
@@ -59,7 +58,7 @@ function App() {
       </div>
     </div>
   );
-
+}
 
 const styles = {
   container: {
@@ -74,46 +73,37 @@ const styles = {
     color: "#0b3d91"
   },
   form: {
-    maxWidth: "500px",
-    margin: "0 auto",
-    background: "#fff",
-    padding: "2rem",
-    borderRadius: "12px",
-    boxShadow: "0 0 12px rgba(0,0,0,0.08)"
+    maxWidth: "400px",
+    margin: "0 auto"
   },
   inputGroup: {
-    marginBottom: "1.5rem"
+    marginBottom: "1rem"
   },
   input: {
     width: "100%",
-    padding: "0.6rem",
-    borderRadius: "6px",
-    border: "1px solid #ccc",
-    fontSize: "1rem"
+    padding: "0.5rem"
   },
   button: {
     width: "100%",
-    padding: "0.8rem",
-    backgroundColor: "#0b3d91",
+    padding: "0.75rem",
+    background: "#0b3d91",
     color: "#fff",
     border: "none",
-    fontSize: "1rem",
-    borderRadius: "6px",
     cursor: "pointer"
-  },
-  warning: {
-    marginTop: "1rem",
-    padding: "1rem",
-    color: "#721c24",
-    backgroundColor: "#f8d7da",
-    borderRadius: "6px"
   },
   success: {
     marginTop: "1rem",
     padding: "1rem",
-    color: "#155724",
     backgroundColor: "#d4edda",
-    borderRadius: "6px"
+    color: "#155724",
+    textAlign: "center"
+  },
+  warning: {
+    marginTop: "1rem",
+    padding: "1rem",
+    backgroundColor: "#fff3cd",
+    color: "#856404",
+    textAlign: "center"
   }
 };
 
