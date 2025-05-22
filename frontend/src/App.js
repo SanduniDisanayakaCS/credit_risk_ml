@@ -23,7 +23,12 @@ function App() {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post("/api/predict", { features });
+      const res = await axios.post("https://creditriskml-production.up.railway.app/predict", 
+  { features },
+  { headers: { "Content-Type": "application/json" } }
+);
+
+
       setPrediction(res.data.credit_risk_prediction);
     } catch (err) {
       alert("Prediction failed. Check backend connection.");
