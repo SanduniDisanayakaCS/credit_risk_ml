@@ -1,10 +1,20 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import joblib
 import numpy as np
 import os
 
 app = FastAPI()
+
+# Allow CORS for frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://credit-risk-ml-81w1-eof8ojn6m-sanduni-disanayakas-projects.vercel.app"],  # Or specify your Vercel frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # === Load model and scaler ===
 BASE_DIR = os.path.dirname(__file__)
