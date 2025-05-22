@@ -21,23 +21,28 @@ function App() {
     setFeatures(updated);
   };
 
-  const handleSubmit = async () => {
-    try {
-      const res = await axios.post("https://creditriskml-production.up.railway.app/predict",
-  { features },
-  { headers: { "Content-Type": "application/json" } }
-);
+ const handleSubmit = async () => {
+  try {
+    const res = await axios.post(
+      "https://creditriskml-production.up.railway.app/predict",
+      { features },
+      { headers: { "Content-Type": "application/json" } }
+    );
+    setPrediction(res.data.credit_risk_prediction);
+  } catch (err) {
+    console.error("Backend error:", err.response ? err.response.data : err.message);
+    alert("Prediction failed. Check backend connection.");
+  }
+};
 
-);
 
 
-      setPrediction(res.data.credit_risk_prediction);
-    } catch (err) {
-  console.error("Backend error:", err.response ? err.response.data : err.message);
-  alert("Prediction failed. Check backend connection.");
+
+
+
 }
 
-  };
+  
 
   return (
     <div style={styles.container}>
@@ -63,7 +68,7 @@ function App() {
       </div>
     </div>
   );
-}
+
 
 const styles = {
   container: {
